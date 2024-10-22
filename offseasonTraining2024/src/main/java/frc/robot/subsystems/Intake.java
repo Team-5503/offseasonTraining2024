@@ -17,12 +17,24 @@ import com.revrobotics.SparkRelativeEncoder;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
+  private CANSparkMax intake;
   public Intake() {
-    
+    intake = new CANSparkMax(6, MotorType.kBrushless);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  // commands
+  public void intake(){
+    intake.set(.3);
+  }
+  public void outtake(){
+    intake.set(-0.3);
+  }
+  public void hold(){
+    intake.set(0);
   }
 }
