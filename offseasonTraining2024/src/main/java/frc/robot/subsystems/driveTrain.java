@@ -31,7 +31,6 @@ public class driveTrain extends SubsystemBase {
   RelativeEncoder leftEncoder = frontL.getEncoder();
   RelativeEncoder rightEncoder = frontR.getEncoder();
 
-  RobotConfig config;
   public driveTrain() {
     frontR = new CANSparkMax(0, MotorType.kBrushless);
     frontL = new CANSparkMax(1, MotorType.kBrushless);
@@ -41,7 +40,8 @@ public class driveTrain extends SubsystemBase {
     backR.follow(frontR);
     AHRS gyro = new AHRS();
     DifferentialDriveOdometry m_odometry = new DifferentialDriveOdometry(gyro.getRotation2d(), leftEncoder.getPosition(), rightEncoder.getPosition());
-
+    
+    RobotConfig config;
     try{
       config = RobotConfig.fromGUISettings();
     } catch (Exception e) {
